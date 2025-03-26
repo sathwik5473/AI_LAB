@@ -8,7 +8,7 @@ model = joblib.load("loan_data1.joblib")
 
 # User inputs
 Gender = st.number_input("Enter Gender (Male:1, Female:0)", min_value=0, max_value=1)
-Married = st.number_input("Enter Married status (Yes:1, No:0)", min_value=0, max_value=1)
+Married = st.number_input("Enter Marital status (Yes:1, No:0)", min_value=0, max_value=1)
 Applicant_income = st.number_input("Enter Applicant Income")
 Loan_amount = st.number_input("Enter Loan Amount")
 
@@ -19,6 +19,6 @@ if st.button('Predict Approval'):
 
     # Fix: Check the first element of the prediction
     if prediction[0] == 'Y':  
-        st.success('✅ Loan Approved')
+        st.success('Loan Approved')
     else:
-        st.error('❌ Loan Rejected')
+        st.error('Loan Rejected')
