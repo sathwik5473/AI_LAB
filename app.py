@@ -1,22 +1,24 @@
-
 import streamlit as st
 import joblib
 
-st.title("Loan Aprroval Process Automation")
-model=joblib.load(loan_data1.joblib)
+st.title("Loan Approval Process Automation")
 
+# Load the model (Fix: Add quotes around file name)
+model = joblib.load("loan_data1.joblib")
 
-Gender=st.number_input("Enter Gender Male:1 Female:0")
-Married=st.number_input("Enter Married status Yes:1 No:0")
-Applicant_income=st.number_input("Enter Applicant_Income")
-Loan_amount=st.number_input("Enter Loan_Amount")
+# User inputs
+Gender = st.number_input("Enter Gender (Male:1, Female:0)", min_value=0, max_value=1)
+Married = st.number_input("Enter Married status (Yes:1, No:0)", min_value=0, max_value=1)
+Applicant_income = st.number_input("Enter Applicant Income")
+Loan_amount = st.number_input("Enter Loan Amount")
 
-
-
+# Predict button
 if st.button('Predict Approval'):
-    prediction=model.predict([[Gender,Married,Applicant_income,Loan_amount]])
+    # Fix: Convert inputs to correct type
+    prediction = model.predict([[int(Gender), int(Married), float(Applicant_income), float(Loan_amount)]])
 
-    if prediction=='Y':
-        st.text('Loan Aprroved')
+    # Fix: Check the first element of the prediction
+    if prediction[0] == 'Y':  
+        st.success('✅ Loan Approved')
     else:
-        st.text('Loan Rejected')
+        st.error('❌ Loan Rejected')
