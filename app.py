@@ -3,7 +3,7 @@ import streamlit as st
 import joblib
 
 st.title("Loan Aprroval Process Automation")
-model=joblib.load('loan_data1')
+model=joblib.load(loan_data1)
 
 
 Gender=st.number_input("Enter Gender Male:1 Female:0")
